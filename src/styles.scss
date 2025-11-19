@@ -1,0 +1,94 @@
+@use 'styles/variables' as vars;
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: vars.$font-family;
+    background: vars.$background-gradient;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+html.dark-mode {
+    body {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        color: #e0e0e0;
+    }
+
+    .mat-mdc-card {
+        background: #2d3748 !important;
+        color: #e0e0e0 !important;
+    }
+
+    .mat-mdc-card-title,
+    .mat-mdc-card-subtitle,
+    .mat-mdc-card-content,
+    .header__title,
+    .header__subtitle,
+    .caption-card__text,
+    .description-panel__text {
+        color: #e0e0e0 !important;
+    }
+
+    .upload-zone {
+        border-color: #4a5568;
+        color: #a0aec0;
+
+        &:hover {
+            border-color: #5c6ac4;
+            background: rgba(92, 106, 196, 0.1);
+        }
+
+        &__text {
+            color: #a0aec0;
+        }
+    }
+
+    .error-card {
+        background: #742a2a !important;
+        color: #feb2b2 !important;
+    }
+
+    .mat-mdc-radio-button {
+        color: #e0e0e0;
+
+        .mdc-radio__background {
+            border-color: #a0aec0 !important;
+        }
+
+        .mdc-label {
+            color: #e0e0e0 !important;
+        }
+    }
+
+    .mat-mdc-outlined-button {
+        color: #e0e0e0 !important;
+        border-color: #4a5568 !important;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+    }
+
+    .mat-mdc-button {
+        color: #e0e0e0 !important;
+    }
+
+    .mat-expansion-panel {
+        background: #2d3748 !important;
+        color: #e0e0e0 !important;
+    }
+
+    .mat-expansion-panel-header-title {
+        color: #e0e0e0 !important;
+    }
+}
+
+// material styles overrides
+.mat-mdc-card-header {
+    padding-bottom: vars.$spacing-md !important;
+}

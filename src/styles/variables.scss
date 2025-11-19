@@ -1,0 +1,46 @@
+$primary-color: #3f51b5;
+$accent-color: #9c27b0;
+$warn-color: #f44336;
+
+$gray-50: #fafafa;
+$gray-100: #f5f5f5;
+$gray-200: #eeeeee;
+$gray-300: #e0e0e0;
+
+$text-primary: rgba(0, 0, 0, 0.87);
+$text-secondary: rgba(0, 0, 0, 0.6);
+$text-hint: rgba(0, 0, 0, 0.5);
+
+$background-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+$background-light: rgba($primary-color, 0.05);
+
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 2rem;
+$spacing-xxl: 3rem;
+
+$font-family: Roboto, "Helvetica Neue", Arial, sans-serif;
+$font-size-sm: 0.875rem;
+$font-size-base: 1rem;
+$font-size-lg: 1.125rem;
+$font-size-xl: 1.25rem;
+$font-size-2xl: 1.5rem;
+$font-size-4xl: 2.5rem;
+
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
+$line-height-normal: 1.5;
+$line-height-relaxed: 1.6;
+
+$border-radius: 8px;
+$border-radius-lg: 12px;
+
+$border-color: $gray-300;
+
+$transition-standard: 0.3s ease;
+
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;

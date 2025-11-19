@@ -1,0 +1,134 @@
+<div class="container">
+    <header class="header">
+        <h1 class="header__title">{{ languageService.translate('title') }}</h1>
+        <p class="header__subtitle">{{ languageService.translate('subtitle') }}</p>
+    </header>
+
+    <mat-card class="step-card">
+        <mat-card-header>
+            <mat-card-title class="step-card__title">
+                <span class="step-number">1</span>
+                <span>{{ languageService.translate('uploadImage') }}</span>
+            </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+            <input type="file" #fileInput (change)="onFileSelected($event)" accept="image/*" class="file-input">
+
+            @if (!imagePreview()) {
+            <div class="upload-zone" (click)="fileInput.click()">
+                <mat-icon class="upload-zone__icon">cloud_upload</mat-icon>
+                <p class="upload-zone__text">{{ languageService.translate('clickToSelect') }}</p>
+            </div>
+            }
+
+            @if (imagePreview()) {
+            <div class="image-preview">
+                <img [src]="imagePreview()" alt="Preview" class="image-preview__img">
+                <button mat-raised-button color="primary" class="image-preview__button" [disabled]="!canUpload()"
+                    (click)="uploadImage()">
+                    @if (uploadLoading()) {
+                    <mat-spinner diameter="20" class="button-spinner"></mat-spinner>
+                    }
+                    <span>{{ languageService.translate('upload') }}</span>
+                </button>
+            </div>
+            }
+        </mat-card-content>
+    </mat-card>
+
+    @if (uploadedImageUrl()) {
+    <mat-card class="step-card">
+        <mat-card-header>
+            <mat-card-title class="step-card__title">
+                <span class="step-number">2</span>
+                <span>{{ languageService.translate('chooseStyle') }}</span>
+            </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+            <mat-radio-group [(ngModel)]="selectedStyle" class="style-group">
+                <mat-radio-button value="humorous" class="style-group__option">
+                    {{ languageService.translate('humorous') }}
+                </mat-radio-button>
+                <mat-radio-button value="advertising" class="style-group__option">
+                    {{ languageService.translate('advertising') }}
+                </mat-radio-button>
+                <mat-radio-button value="motivational" class="style-group__option">
+                    {{ languageService.translate('motivational') }}
+                </mat-radio-button>
+                <mat-radio-button value="sarcastic" class="style-group__option">
+                    {{ languageService.translate('sarcastic') }}
+                </mat-radio-button>
+                <mat-radio-button value="professional" class="style-group__option">
+                    {{ languageService.translate('professional') }}
+                </mat-radio-button>
+            </mat-radio-group>
+
+            <button mat-raised-button color="primary" class="generate-button" [disabled]="!canGenerate()"
+                (click)="generateMeme()">
+                @if (generateLoading()) {
+                <mat-spinner diameter="20" class="button-spinner"></mat-spinner>
+                }
+                <span>{{ languageService.translate('generateCaption') }}</span>
+            </button>
+        </mat-card-content>
+    </mat-card>
+    }
+
+    @if (error()) {
+    <mat-card class="error-card">
+        <mat-icon class="error-card__icon">error_outline</mat-icon>
+        <span class="error-card__text">{{ error() }}</span>
+    </mat-card>
+    }
+
+    @if (generatedMeme()) {
+    <mat-card class="step-card">
+        <mat-card-header>
+            <mat-card-title class="step-card__title">
+                <span class="step-number">3</span>
+                <span>{{ languageService.translate('result') }}</span>
+            </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+            <div class="result-grid">
+                <img [src]="generatedMeme()!.image_url" alt="Result" class="result-grid__image">
+
+                <div class="result-info">
+                    <mat-card class="caption-card">
+                        <mat-card-header class="caption-card__header">
+                            <mat-card-title class="caption-card__title">{{ languageService.translate('caption') }}</mat-card-title>
+                            <button mat-icon-button (click)="copyCaption()" class="caption-card__copy-button">
+                                <mat-icon>content_copy</mat-icon>
+                            </button>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <p class="caption-card__text">{{ generatedMeme()!.caption }}</p>
+                        </mat-card-content>
+                    </mat-card>
+
+                    <mat-expansion-panel class="description-panel">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>{{ languageService.translate('aiDescription') }}</mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <p class="description-panel__text">{{ generatedMeme()!.description }}</p>
+                    </mat-expansion-panel>
+
+                    <div class="action-buttons">
+                        <button mat-raised-button color="accent" (click)="regenerate()" class="action-buttons__button">
+                            <mat-icon>refresh</mat-icon>
+                            <span>{{ languageService.translate('regenerate') }}</span>
+                        </button>
+                        <button mat-stroked-button (click)="reset()" class="action-buttons__button">
+                            <mat-icon>upload</mat-icon>
+                            <span>{{ languageService.translate('newImage') }}</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+    }
+</div>
