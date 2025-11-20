@@ -1,6 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-
-export type Language = 'en' | 'pl';
+import { TLanguage } from './types/service.types';
 
 interface Translations {
     title: string;
@@ -31,9 +30,9 @@ interface Translations {
     providedIn: 'root'
 })
 export class LanguageService {
-    currentLanguage = signal<Language>('en');
+    private currentLanguage = signal<TLanguage>('en');
 
-    private translations: Record<Language, Translations> = {
+    private translations: Record<TLanguage, Translations> = {
         en: {
             title: 'AI Meme Generator',
             subtitle: 'Upload an image and generate AI-powered captions',
@@ -85,15 +84,15 @@ export class LanguageService {
     };
 
     constructor() {
-        const saved = localStorage.getItem('language') as Language;
+        const saved = localStorage.getItem('TLanguage') as TLanguage;
         if (saved && (saved === 'en' || saved === 'pl')) {
             this.currentLanguage.set(saved);
         }
     }
 
-    public setLanguage(lang: Language): void {
+    public setLanguage(lang: TLanguage): void {
         this.currentLanguage.set(lang);
-        localStorage.setItem('language', lang);
+        localStorage.setItem('Language', lang);
     }
 
     public getTranslations(): Translations {

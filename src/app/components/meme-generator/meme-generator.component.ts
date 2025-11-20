@@ -8,9 +8,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MemeService } from '../../services/meme.service';
-import { MemeGenerateResponse } from '../../models/meme.model';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { LanguageService } from '../../services/language.service';
+import { IMemeGenerateResponse } from '../../models/meme.model';
 
 @Component({
     selector: 'app-meme-generator',
@@ -34,7 +34,7 @@ export class MemeGeneratorComponent {
     protected imagePreview = signal<string | null>(null);
     protected uploadedImageUrl = signal<string | null>(null);
     protected selectedStyle = signal<'humorous' | 'advertising' | 'motivational' | 'sarcastic' | 'professional'>('humorous');
-    protected generatedMeme = signal<MemeGenerateResponse | null>(null);
+    protected generatedMeme = signal<IMemeGenerateResponse | null>(null);
     protected uploadLoading = signal<boolean>(false);
     protected generateLoading = signal<boolean>(false);
     protected error = signal<string | null>(null);
